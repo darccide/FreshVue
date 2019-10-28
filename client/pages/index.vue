@@ -6,10 +6,14 @@
         client
       </h1>
       <h2 class="subtitle">
-        FreshVue client using Nuxt.js
+        FreshVue Nuxt.js client
       </h2>
       <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
+        <a
+          href="https://nuxtjs.org/"
+          target="_blank"
+          class="button--green"
+        >
           Documentation
         </a>
         <a

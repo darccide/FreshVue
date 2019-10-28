@@ -1,6 +1,6 @@
 # client
 
-> FreshVue client using Nuxt.js
+> FreshVue Nuxt.js client
 
 ## Build Setup
 
