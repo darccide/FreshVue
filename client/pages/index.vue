@@ -1,43 +1,43 @@
 <template>
-  
-</template>
+  <div class="columns is-centered is-multiline">
+    <h1>Items</h1>
 
+    <ItemCard
+      v-for="(item, index) in items"
+      :key="index"
+      :item="item"
+      :data-index="index"
+    />
+  </div>
+</template>
 <script>
+import ItemCard from '@/components/ItemCard.vue'
+import { mapState } from 'vuex'
 
 export default {
-  
+  head() {
+    return {
+      title: 'Item Listing',
+    }
+  },
+  async fetch({ store, error }) {
+    try {
+      await store.dispatch('items/fetchItems')
+    } catch(e) {
+      error({ 
+        statusCode: 503, 
+        message: 'Unable to fetch items at this time. Please try again.'
+      })
+    }
+  },
+  components: {
+    ItemCard
+  },
+  computed: mapState({
+    items: state => state.items.items
+  })
 }
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
+<style lang="scss" scoped>
+  
 </style>

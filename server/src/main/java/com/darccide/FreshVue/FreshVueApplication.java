@@ -19,21 +19,21 @@ public class FreshVueApplication {
 	}
         
         // Fix CORS issues
-        @Bean
-        public FilterRegistrationBean simpleCorsFilter() {
-            UrlBasedCorsConfigurationSource source 
-                    = new UrlBasedCorsConfigurationSource();
-            CorsConfiguration config = new CorsConfiguration();
-            config.setAllowCredentials(true);
-            config.setAllowedOrigins(Collections.singletonList(
-                    "http://localhost:8080"));
-            config.setAllowedMethods(Collections.singletonList("*"));
-            config.setAllowedHeaders(Collections.singletonList("*"));
-            source.registerCorsConfiguration("/**", config);
-            FilterRegistrationBean bean 
-                    = new FilterRegistrationBean<>(new CorsFilter(source));
-            bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-            return bean;
-        }
+//        @Bean
+//        public FilterRegistrationBean simpleCorsFilter() {
+//            UrlBasedCorsConfigurationSource source 
+//                    = new UrlBasedCorsConfigurationSource();
+//            CorsConfiguration config = new CorsConfiguration();
+//            config.setAllowCredentials(true);
+//            config.setAllowedOrigins(Collections.singletonList(
+//                    "http://localhost:8080"));
+//            config.setAllowedMethods(Collections.singletonList("*"));
+//            config.setAllowedHeaders(Collections.singletonList("*"));
+//            source.registerCorsConfiguration("/**", config);
+//            FilterRegistrationBean bean 
+//                    = new FilterRegistrationBean<>(new CorsFilter(source));
+//            bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//            return bean;
+//        }
 
 }
