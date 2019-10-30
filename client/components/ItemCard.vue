@@ -1,24 +1,18 @@
 <template>
   <nuxt-link :to="'/item/' + item.itemId">
-    <div class="card column">
+    <div class="card column is-one-thirds">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+          <img :src="getImgUrl(item.image)" :alt="item.itemName">
         </figure>
       </div>
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            <p class="title is-4">{{ item.itemName }}</p>
+            <p class="title is-2">{{ item.itemName }}</p>
           </div>
-        <div class="content is-clearfix">
-          <p>{{ item.itemDescription }}</p>
-        </div>
-        <div class="is-pulled-left">
-            <span class="title is-5"><strong>Inventory: {{ item.inventory }}</strong></span>
-        </div>
           <p class="is-pulled-right">
-            <span class="title is-5"><strong>&#36; {{ item.price }}</strong></span>
+            <span class="title is-2">Price &#36;{{ item.price }}</span>
           </p>
         </div>
         <div class="card-footer">
@@ -35,6 +29,11 @@ export default {
   name: 'ItemCard',
   props: {
       item: Object
+  },
+  methods: {
+    getImgUrl(image) {
+      return require('../assets/images/' + image)
+    }
   }
 }
 </script>

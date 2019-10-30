@@ -1,7 +1,6 @@
 
 package com.darccide.FreshVue.entities;
 
-import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +16,9 @@ import lombok.*;
 
 @Entity
 @Data
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class Item {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long itemId;
@@ -28,7 +28,7 @@ public class Item {
     private String itemName;
     
     @Column(nullable = false)
-    private BigDecimal price;
+    private Double price;
     
     @Min(1)
     @Max(250)

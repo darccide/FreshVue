@@ -5,7 +5,6 @@ import com.darccide.FreshVue.entities.Item;
 import com.darccide.FreshVue.services.ItemService;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -36,34 +35,19 @@ public class ItemController {
     }
     
     @GetMapping("/{itemId}")
-    public ResponseEntity<Item> findById(@PathVariable Long itemId) {
-        Optional<Item> item = itemService.findById(itemId);
-        if (!item.isPresent()) {
-            log.error("Item ID " + itemId + " does not exist");
-            ResponseEntity.badRequest().build();
-        }
-        
-        return ResponseEntity.ok(item.get());
+    public ResponseEntity<Item> findById(@PathVariable Long itemId) {        
+        return ResponseEntity.ok(itemService.findById(itemId));
     }
     
     @PutMapping("/{itemId}")
     public ResponseEntity<Item> update(@PathVariable Long itemId,
             @Valid @RequestBody Item item) {
-        if (!itemService.findById(itemId).isPresent()) {
-            log.error("Item ID " + itemId + " does not exist");
-            ResponseEntity.badRequest().build();
-        }
         
         return ResponseEntity.ok(itemService.save(item));
     }
     
     @DeleteMapping("/{itemId}")
     public ResponseEntity delete(@PathVariable Long itemId) {
-        if (!itemService.findById(itemId).isPresent()) {
-            log.error("Item ID " + itemId + " does not exist");
-            ResponseEntity.badRequest().build();
-        }
-        
         itemService.deleteById(itemId);
         
         return ResponseEntity.ok().build();
