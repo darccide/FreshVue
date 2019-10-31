@@ -29,19 +29,22 @@ export default {
 
 <style>
     html {
+      background-color: hsl(141, 71%, 48%);
       -webkit-text-size-adjust: 100%;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
     body {
+      background-color: hsl(141, 71%, 48%);
       margin: 0;
       font-family: 'Open Sans', sans-serif;
       font-size: 16px;
       line-height: 1.5;
     }
     #app {
+      background-color: hsl(141, 71%, 48%);
       box-sizing: border-box;
-      width: 500px;
+      width: 100%;
       padding: 0 20px 20px;
       margin: 0 auto;
     }

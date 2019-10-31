@@ -19,6 +19,7 @@ public class LineItem {
     @Column(nullable = false)
     private Integer quantity;
     
+    
     public LineItem(Cart cart, Item item, Integer quantity) {
         pk = new LineItemPK();
         pk.setCart(cart);

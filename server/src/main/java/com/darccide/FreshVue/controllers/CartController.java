@@ -14,10 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import javax.validation.constraints.NotNull;
 
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
@@ -29,17 +27,22 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/carts")
-@Slf4j
-@RequiredArgsConstructor
 public class CartController {
     
     ItemService itemService;
     CartService cartService;
     LineItemService lineItemService;
     
+    public CartController(ItemService itemService, CartService cartService, LineItemService lineItemService) {
+        this.itemService = itemService;
+        this.cartService = cartService;
+        this.lineItemService = lineItemService;
+    }
+    
     @GetMapping
-    public ResponseEntity<List<Cart>> findAll() {
-        return ResponseEntity.ok(cartService.findAll());
+    @ResponseStatus(HttpStatus.OK)
+    public @NotNull Iterable<Cart> list() {
+        return this.cartService.findAll();
     }
     
     @PostMapping
@@ -75,7 +78,8 @@ public class CartController {
     }
     
     private void validateItemsExistence(List<LineItemDto> lineItems) {
-        List<LineItemDto> list = lineItems.stream()
+        List<LineItemDto> list = lineItems
+                .stream()
                 .filter(li -> Objects.isNull(itemService.findById(li
                         .getItem()
                         .getItemId())))
@@ -87,11 +91,11 @@ public class CartController {
     
     public static class CartForm {
         private List<LineItemDto> lineItems;
-        
+
         public List<LineItemDto> getLineItems() {
             return lineItems;
         }
-        
+
         public void setLineItems(List<LineItemDto> lineItems) {
             this.lineItems = lineItems;
         }

@@ -15,7 +15,7 @@ public class CartService {
     private final CartRepository cartRepository;
     
     public List<Cart> findAll() {
-        return cartRepository.findAll();
+        return this.cartRepository.findAll();
     }
     
     public Cart create(Cart cart) {

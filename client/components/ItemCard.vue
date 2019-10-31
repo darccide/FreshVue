@@ -1,27 +1,36 @@
 <template>
-  <nuxt-link :to="'/item/' + item.itemId">
-    <div class="card column is-one-thirds">
+    <div class="card column is-one-third">
       <div class="card-image">
-        <figure class="image is-4by3">
-          <img :src="getImgUrl(item.image)" :alt="item.itemName">
+        <figure class="image-contain">
+          <nuxt-link :to="'/item/' + item.itemId">
+            <img :src="getImgUrl(item.image)" :alt="item.itemName" class="item-img">
+          </nuxt-link>
         </figure>
       </div>
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            <p class="title is-2">{{ item.itemName }}</p>
+            <p class="is-pulled-right">
+              <span class="title is-5 has-text-light">{{ item.itemName }} </span>
+              <span class="title is-5 has-text-light">|  Price &#36;{{ item.price }}</span>
+            </p>
           </div>
-          <p class="is-pulled-right">
-            <span class="title is-2">Price &#36;{{ item.price }}</span>
-          </p>
         </div>
         <div class="card-footer">
-          <div class="card-footer-item field is-grouped">
+          <div class="card-footer-item">
+            <nuxt-link :to="'/item/' + item.itemId">
+              <button class="button is-fullwidth is-success is-light">
+                <span class="icon is-small">
+                  <i class="fa fa-eye"></i>
+                </span>
+                <span>View Item</span>
+              </button>
+            </nuxt-link>
           </div>
         </div>
       </div>
     </div>
-  </nuxt-link>
+  
 </template>
 
 <script>
@@ -39,21 +48,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
- .details {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-
-    &:hover {
-      border: 1px solid #51bafc;
+ .image-contain {
+    padding-top: 8em;
+    max-height: 60em;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    img {
+      position: relative;
+      float: left;
+      width:  16em;
+      height: 14em;
+      background-position: 50% 50%;
+      background-repeat:   no-repeat;
+      background-size:     cover;
     }
- }
+  }
  .card-content {
-   padding: 0;
+   padding-top: 15px;
  }
 </style>
 

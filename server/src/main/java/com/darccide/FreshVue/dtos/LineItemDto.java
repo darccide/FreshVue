@@ -2,14 +2,27 @@
 package com.darccide.FreshVue.dtos;
 
 import com.darccide.FreshVue.entities.Item;
-import javax.persistence.Entity;
-import lombok.*;
 
-@Data
-@NoArgsConstructor
 public class LineItemDto {
     
-    private Item item;
-    private Integer quantity;
+    public Item item;
+    public Integer quantity;
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+    
     
 }

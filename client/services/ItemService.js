@@ -1,19 +1,10 @@
-import axios from 'axios'
-
-const itemInstance = axios.create({
-  baseURL: `http://localhost:9000`,
-  withCredentials: false,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  }
-})
+import { apiClient } from '@/services/ApiClient.js'
 
 export default {
   getItems() {
-    return itemInstance.get('/api/items')
+    return apiClient.get('/api/items')
   },
   getItem(id) {
-    return itemInstance.get('/api/items/' + id)
+    return apiClient.get('/api/items/' + id)
   }
 }

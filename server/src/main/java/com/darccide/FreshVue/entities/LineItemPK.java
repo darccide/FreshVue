@@ -2,6 +2,8 @@
 package com.darccide.FreshVue.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
@@ -14,6 +16,7 @@ import lombok.*;
 @Embeddable
 @Data
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "cart")
 public class LineItemPK implements Serializable {
     
     @JsonBackReference

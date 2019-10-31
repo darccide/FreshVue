@@ -1,17 +1,11 @@
 <template>
-  <div class="columns is-centered is-multiline">
-    <h1>Items</h1>
-
-    <ItemCard
-      v-for="(item, index) in items"
-      :key="index"
-      :item="item"
-      :data-index="index"
-    />
-  </div>
+  <div>
+    <Landing />
+  </div> 
 </template>
 <script>
-import ItemCard from '@/components/ItemCard.vue'
+// import ItemCard from '@/components/ItemCard.vue'
+import Landing from '@/components/Landing.vue'
 import { mapState } from 'vuex'
 
 export default {
@@ -31,7 +25,7 @@ export default {
     }
   },
   components: {
-    ItemCard
+    Landing
   },
   computed: mapState({
     items: state => state.items.items
@@ -39,5 +33,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  
+  body {
+      background-color: hsl(141, 71%, 48%);
+  }
 </style>
