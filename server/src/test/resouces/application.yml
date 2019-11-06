@@ -5,7 +5,7 @@ spring:
     application:
         name: FreshVueDB
     datasource:
-        url: jdbc:mysql://localhost/FreshVueDB?serverTimezone=America/Chicago&useSSL=false&allowPublicKeyRetrieval=true
+        url: jdbc:mysql://localhost/FreshVueTestDB?serverTimezone=America/Chicago&useSSL=false&allowPublicKeyRetrieval=true
         username: root
         password: fanger
     jpa:
@@ -16,4 +16,3 @@ spring:
     jackson:
         serialization:
             FAIL_ON_EMPTY_BEANS: false
-    

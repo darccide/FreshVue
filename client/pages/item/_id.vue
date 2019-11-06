@@ -14,25 +14,23 @@
           <div class="card-content">
             <span class="title is-3"><strong>&#36;{{ item.price }}</strong></span>
           </div>
-          <div class="card-content update-quantity">
-            <p class="quantity">
-              <button class="button update-num is-success" @click="quantity > 0 ? quantity-- : quantity = 0">-</button>
-              <input class="input is-success" type="number" v-model="quantity" min="0" max="50" />
-              <button class="button update-num is-success" @click="quantity++">+</button>
-            </p>
-          </div>
-          <div class="card-content update-quantity">
-            <p>
-              <button class="button is-success is-light is-outlined">Add to Cart</button>
-            </p>
-          </div>
+          <add-to-cart
+            :id="item.itemId"
+            :name="item.itemName"
+            :price="item.price"
+            :inventory="item.inventory"
+            :image="item.image"
+            :description="item.itemDescription"
+            :quantity="quantity"
+          />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import AddToCart from '@/components/AddToCart.vue'
+import { mapState } from 'vuex'
 
 export default {
     head() {
@@ -46,6 +44,9 @@ export default {
                 }
             ]
         }
+    },
+    components: {
+      AddToCart
     },
     data() {
       return {

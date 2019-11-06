@@ -1,11 +1,9 @@
 import ItemService from '@/services/ItemService.js'
-import CartService from '@/services/CartService.js'
 
 export const state = () => ({
   items: [],
   item: {},
-  cart: [],
-  cartDisplayStatus: 'idle'
+  cart: []
 })
 
 export const mutations = {
@@ -15,15 +13,14 @@ export const mutations = {
   SET_ITEM(state, item) {
     state.item = item
   },
-  UPDATE_CART_DISPLAY: (state, payload) => {
-    state.cartDisplayStatus = payload
-  },
-  EMPTY_CART: (state) => {
-    ;(state.cart = []), (state.cartDisplayStatus = 'idle')
-  },
-  ADD_TO_CART: (state, payload) => {
-    let found = state.cart.find((el) => el.id === payload.id)
-    found ? (found.quantity += payload.quantity) : state.cart.push(payload)
+  ADD_TO_CART(state, item) {
+    let found = state.cart.find((product) => product.itemId === item.itemId)
+
+    if (found) {
+      found.quantity++
+    } else {
+      state.cart.push(item)
+    }
   }
 }
 
@@ -41,12 +38,12 @@ export const actions = {
 }
 
 export const getters = {
-  cartCount: (state) => {
-    if (!state.cart.length) return 0
-    return state.cart.reduce((ac, next) => ac + next.quantity, 0)
-  },
-  cartTotal: (state) => {
-    if (!state.cart.length) return 0
-    return state.cart.reduce((ac, next) => ac + next.quantity * next.price, 0)
+  totalPrice: (state) => {
+    let total = 0
+    state.cart.filter((item) => {
+      total += item.price * item.quantity
+    })
+
+    return total
   }
 }

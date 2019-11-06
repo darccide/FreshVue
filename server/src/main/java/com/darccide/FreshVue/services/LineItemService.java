@@ -4,8 +4,6 @@ package com.darccide.FreshVue.services;
 import com.darccide.FreshVue.entities.LineItem;
 import com.darccide.FreshVue.repositories.LineItemRepository;
 
-import java.util.List;
-import java.util.Optional;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

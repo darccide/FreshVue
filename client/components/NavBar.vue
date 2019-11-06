@@ -32,26 +32,39 @@
                             </nuxt-link>
                         </span>
                         <span class="navbar-item">
-                            <div class="cartTotal" v-if="cartCount > 0">{{ cartCount }}</div>
-                            <nuxt-link class="button is-success is-outlined" to="/cart">
+                            <button class="button is-success is-outlined" @click='openCartDisplay'>
                                 <span class="icon">
                                     <i class="fa fa-shopping-cart"></i>
                                 </span>
-                                <span>Cart</span>
-                            </nuxt-link>
+                            </button>
                         </span>
                     </div>
                 </div>
             </div>
         </nav>
+        <cart-display :openModal='cartDisplayActive' @closeRequest='close' />
     </div>
 </template>
 
 <script>
+    import CartDisplay from '@/components/CartDisplay.vue'
     import { mapGetters } from 'vuex'
     export default {
-        computed: {
-            ...mapGetters(["items/cartCount"])
+        components: {
+            CartDisplay
+        },
+        data() {
+            return {
+                cartDisplayActive : ''
+            }
+        },
+        methods: {
+            openCartDisplay() {
+                this.cartDisplayActive = 'is-active'
+            },
+            close() {
+                this.cartDisplayActive = ''
+            }
         }
     }
 </script>

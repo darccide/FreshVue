@@ -41,4 +41,5 @@ public class Item {
     @Size(max = 3000, 
             message = "Item description must be less than 3000 characters.")
     private String itemDescription;
+    
 }

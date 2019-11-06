@@ -4,14 +4,13 @@
   </div> 
 </template>
 <script>
-// import ItemCard from '@/components/ItemCard.vue'
 import Landing from '@/components/Landing.vue'
 import { mapState } from 'vuex'
 
 export default {
   head() {
     return {
-      title: 'Item Listing',
+      title: 'FreshVue Home',
     }
   },
   async fetch({ store, error }) {

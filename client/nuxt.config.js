@@ -1,32 +1,34 @@
+const webpack = require('webpack')
+
 export default {
-  mode: "universal",
+  mode: 'universal',
   /*
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || "",
+    title: process.env.npm_package_name || '',
     meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
-        hid: "description",
-        name: "description",
-        content: process.env.npm_package_description || ""
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: "#23D160" },
+  loading: { color: '#23D160' },
   /*
    ** Global CSS
    */
   css: [
     {
-      src: "bulma/bulma.sass",
-      lang: "sass"
+      src: 'bulma/bulma.sass',
+      lang: 'sass'
     }
   ],
   /*
@@ -42,8 +44,9 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    "@nuxtjs/axios",
-    "@nuxtjs/font-awesome"
+    '@nuxtjs/axios',
+    '@nuxtjs/font-awesome',
+    'nuxt-vuex-localstorage'
   ],
   /*
    ** Axios module configuration
@@ -54,9 +57,14 @@ export default {
    ** Build configuration
    */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {}
+    vendor: ['jquery', 'bootstrap'],
+    plugins: [
+      // set shortcuts as global for bootstrap
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery'
+      })
+    ]
   }
-};
+}
